@@ -1,0 +1,104 @@
+generated: '2026-07-19'
+method: searched
+source: https://docs.kubeark.com/kubeark-identity
+docs: https://docs.kubeark.com/kubeark-identity
+note: >-
+  DERIVED-FROM-SPEC WAS NOT POSSIBLE: Kubeark publishes no OpenAPI/Swagger and exposes no
+  public API host, so there are no securitySchemes to aggregate. This profile is searched
+  from the documentation instead. Two distinct auth surfaces exist and are recorded
+  separately: (1) how humans/IdPs authenticate INTO the Kubeark platform, and (2) how
+  workflow nodes authenticate OUT to target systems.
+summary:
+  types:
+  - openIdConnect
+  - oauth2
+  - saml2
+  - ldap
+  - apiKey
+  api_key_in:
+  - workflow node input (vault-backed)
+  oauth2_flows: []
+  oauth2_flows_note: >-
+    The docs name OAuth2/OIDC support but publish no flow names, authorization URL or
+    token URL, so no flow list is asserted here.
+platform_authentication:
+  component: Kubeark Identity
+  description: >-
+    Kubeark Identity is the platform's bundled identity provider. It manages digital
+    identities, authenticates users, and brokers access to applications. It signs JSON Web
+    Tokens for OAuth and OIDC, and generates a self-signed certificate on first start
+    (valid 1 year, rotatable, also usable for SAML providers/sources).
+  protocols:
+  - id: saml2
+    name: SAML2
+  - id: ldap
+    name: LDAP
+  - id: oauth2
+    name: OAuth2
+  - id: oidc
+    name: OpenID Connect
+  - id: oauth1
+    name: OAuth1
+    note: listed under federation protocols
+  - id: scim
+    name: SCIM
+    note: listed as a supported provider protocol for identity provisioning
+  federation:
+    sso: true
+    docs: https://docs.kubeark.com/federation-and-single-sign-on-sso
+    description: >-
+      Federation and Single Sign On lets users authenticate against an external identity
+      provider of their choice and authorize access to applications and services.
+  session:
+    revoke_previous_sessions: >-
+      Optional setting revokes a user's previous sessions on login; documented as having
+      no effect on OAuth refresh tokens.
+  auth_method_context: >-
+    An auth_method property is set by the Password stage, the Authenticator validation
+    stage, the OAuth2 Provider, and by API authentication, depending on which method was
+    used.
+workflow_authentication:
+  description: >-
+    Workflow nodes authenticate to external and Kubernetes targets using credentials
+    supplied as node inputs and stored in a vault rather than inline.
+  mechanisms:
+  - id: api-token
+    name: Api Token
+    description: >-
+      Node input field carrying the token used to authenticate an action, e.g. the token
+      used to add a Kubeark cluster, or the token kubectl uses against the Kubernetes
+      cluster API.
+    used_by:
+    - Add Kubeark Cluster action
+    - kubectl action
+    - deployment actions
+  - id: kubeconfig
+    name: Kubeconfig
+    description: >-
+      Uploaded file or inline text containing cluster server addresses, user credentials
+      and context, used by Kubeark to interact with a Kubernetes cluster.
+  - id: oauth-provider-token
+    name: OAuth provider token
+    description: >-
+      Since the October 2024 release, workflows can retrieve tokens through mainstream
+      OAuth identity providers (GitHub, Salesforce, Google, Microsoft and others) for use
+      when interacting with forms embedded in workflows.
+  credential_storage:
+  - id: local-vault
+    name: Local Vault
+    docs: https://docs.kubeark.com/local-vault
+    scope: workspace
+  - id: global-vault
+    name: Global Vault
+    docs: https://docs.kubeark.com/global-vault
+    scope: platform
+  vault_description: >-
+    Vaults securely store and provide access to secrets such as passwords and API tokens
+    so credentials are referenced by nodes rather than embedded in workflow definitions.
+authorization:
+  model: Roles and Permissions
+  docs: https://docs.kubeark.com/roles-and-permissions
+  scopes_published: false
+  scopes_note: >-
+    No OAuth scope reference or permission-string registry is published, so no scopes/
+    artifact is asserted for this provider.
