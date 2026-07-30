@@ -1,19 +1,53 @@
 aid: kubeark
 name: Kubeark
-description: Kubeark is a company surfaced as a portfolio company of seedcamp and added to the API Evangelist
-  network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+description: >-
+  Kubeark is an enterprise orchestration and AI automation platform that standardizes
+  system integration across hybrid estates. It combines three surfaces: workflow
+  automation, where technical teams and end users build language-agnostic workflows and
+  long-running jobs from a node-based editor; integration, which connects existing
+  systems, SaaS applications, databases and internal APIs through prebuilt connectors and
+  actions; and agentic automation, which deploys autonomous AI agents that can run
+  on-premise for compliance-sensitive environments. The platform operates on two
+  perspectives, a Kubernetes perspective covering clusters, templates and deployments, and
+  a Terraform-centric infrastructure perspective for provisioning. Kubeark bundles its own
+  identity provider, Kubeark Identity, supporting SAML2, LDAP, OAuth2, OIDC and SCIM, plus
+  local and global vaults for secrets. It ships as self-hosted, cloud, hybrid or
+  on-premises software licensed by number of templates and clusters, and publishes no
+  public API, OpenAPI description or SDKs.
 url: https://raw.githubusercontent.com/api-evangelist/kubeark/refs/heads/main/apis.yml
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kubeark.com/wp-content/uploads/2025/01/cropped-kubeark-flaticon-270x270.png
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - seedcamp
-x-tier: stub
-x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-19'
 tags:
 - Company
+- Orchestration
+- Automation
+- Workflow Automation
+- Integration
+- Kubernetes
+- Infrastructure as Code
+- Terraform
+- Identity and Access Management
+- Agentic AI
+- DevOps
+- Self-Hosted
 apis: []
 maintainers:
 - FN: Kin Lane
@@ -22,4 +56,60 @@ maintainers:
   email: info@apis.io
 common:
 - type: Website
-  url: http://kubeark.com
+  url: https://kubeark.com/
+- type: Documentation
+  url: https://docs.kubeark.com/
+- type: GettingStarted
+  url: https://docs.kubeark.com/getting-started
+- type: Blog
+  url: https://kubeark.com/blog/
+- type: Support
+  url: https://kubeark.com/contact-us/
+- type: Support
+  name: Support Policy
+  url: https://kubeark.com/support-policy/
+- type: TermsOfService
+  url: https://kubeark.com/terms/
+- type: PrivacyPolicy
+  url: https://kubeark.com/wp-content/uploads/2025/01/2023.02.10.kubeark-privacy-statement.pdf
+- type: GitHubOrganization
+  url: https://github.com/Kubeark
+- type: CaseStudies
+  url: https://kubeark.com/success-stories/
+- type: ChangeLog
+  name: Release Notes
+  url: https://docs.kubeark.com/release-notes
+- type: ChangeLog
+  name: Change Log Artifact
+  url: changelog/kubeark-changelog.yml
+- type: Lifecycle
+  name: Product Lifecycle Artifact
+  url: lifecycle/kubeark-lifecycle.yml
+- type: Deprecation
+  name: Product Lifecycle and Support Policy
+  url: https://docs.kubeark.com/product-lifecycle
+- type: Authentication
+  name: Authentication Profile
+  url: authentication/kubeark-authentication.yml
+- type: Conformance
+  name: Standards Conformance
+  url: conformance/kubeark-conformance.yml
+- type: Conventions
+  name: Platform Conventions
+  url: conventions/kubeark-conventions.yml
+- type: Webhooks
+  name: Webhook and Trigger Catalog
+  url: asyncapi/kubeark-webhooks.yml
+- type: DataModel
+  name: Entity Model
+  url: data-model/kubeark-data-model.yml
+- type: DomainSecurity
+  name: Domain Security Probe
+  url: security/kubeark-domain-security.yml
+- type: LLMsTxt
+  url: llms/kubeark-llms.txt
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence
