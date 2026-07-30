@@ -1,0 +1,58 @@
+generated: '2026-07-19'
+method: searched
+source: https://docs.kubeark.com/web-hooks
+spec_type: none
+asyncapi_published: false
+note: >-
+  Kubeark publishes NO AsyncAPI document. It does document a real event surface, captured
+  here as a webhook/trigger catalog. Important directional caveat: Kubeark webhooks are
+  primarily INBOUND - a webhook is an HTTP entry point that starts a workflow execution -
+  rather than an outbound event-notification catalog. No event names, payload schemas or
+  channel definitions are published, so none are asserted here.
+direction: inbound
+webhooks:
+  docs: https://docs.kubeark.com/web-hooks
+  surface: Webhooks Panel in the Workflows Editor
+  description: >-
+    UI panel for managing webhooks associated with workflows. Users can create, update,
+    execute and manage webhooks that invoke a workflow.
+  capabilities:
+  - id: create-update-execute
+    description: Create, update, execute and manage webhooks bound to a workflow.
+  - id: wait-and-return-output
+    description: >-
+      Webhook can wait for the workflow execution to complete and return the workflow
+      output in the webhook response.
+    since: '2024-10'
+  - id: custom-url
+    description: Specify a custom URL for a webhook.
+    status: preview
+    since: '2024-10'
+  payload_schema_published: false
+  signature_verification_documented: false
+  retry_policy_documented: false
+triggers:
+  docs: https://docs.kubeark.com/workflow-triggers
+  surface: Triggers Panel in the Workflows Editor
+  description: >-
+    Triggers bind external or internal events to a workflow. The panel supports creating
+    and managing triggers, filtering them, viewing trigger detail, and capturing live
+    events.
+  capabilities:
+  - id: expression-builder
+    description: Tool for creating or editing complex trigger expressions.
+  - id: live-event-capture
+    description: >-
+      Capture live events for a specific trigger without attaching a workflow, enabling
+      real-time monitoring of trigger events.
+    since: '2024-10'
+  event_catalog_published: false
+scheduled_executions:
+  docs: https://docs.kubeark.com/scheduled-executions
+  description: >-
+    Panel listing workflow executions scheduled to run automatically at a predefined date
+    and time; scheduled via the Schedule Execution option on the Run button.
+cron_jobs:
+  docs: https://docs.kubeark.com/cron-jobs
+  description: Cron jobs are a first-class workspace resource and appear as an auditable
+    model in the logs.

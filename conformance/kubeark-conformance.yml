@@ -1,0 +1,69 @@
+generated: '2026-07-19'
+method: searched
+source: https://docs.kubeark.com/kubeark-identity
+note: >-
+  Conformance asserted from documented platform capabilities only. Kubeark publishes no
+  OpenAPI, so no spec-derived evidence is available, and it publishes no security
+  certifications (no SOC 2 / ISO 27001 / PCI / HIPAA / FedRAMP claim and no trust center
+  was found), so NO Compliance pointer is emitted for this provider.
+standards:
+- id: oauth2
+  conforms: true
+  evidence: >-
+    Kubeark Identity documents OAuth2 support as a provider/source protocol and signs JWTs
+    for OAuth; workflows retrieve tokens via mainstream OAuth providers.
+  source: https://docs.kubeark.com/kubeark-identity
+- id: oidc
+  conforms: true
+  evidence: >-
+    Kubeark Identity documents OIDC support and signs JSON Web Tokens for OAuth and OIDC;
+    a self-signed certificate is generated for OAuth2/OIDC providers.
+  source: https://docs.kubeark.com/kubeark-identity
+- id: saml2
+  conforms: true
+  evidence: >-
+    SAML2 listed as a supported authentication and federation protocol; certificate
+    handling documents SAML providers/sources explicitly.
+  source: https://docs.kubeark.com/kubeark-identity
+- id: ldap
+  conforms: true
+  evidence: LDAP listed as a supported authentication and federation protocol, and as a
+    source from which users can be added.
+  source: https://docs.kubeark.com/kubeark-identity
+- id: scim
+  conforms: true
+  evidence: SCIM listed among the major supported identity provider protocols.
+  source: https://docs.kubeark.com/kubeark-identity
+- id: jwt
+  conforms: true
+  evidence: Kubeark Identity signs JSON Web Tokens for OAuth and OIDC.
+  source: https://docs.kubeark.com/certificates
+- id: terraform
+  conforms: true
+  evidence: >-
+    Infrastructure templates are Terraform-centric, using Terraform's declarative
+    Infrastructure-as-Code language to provision resources.
+  source: https://docs.kubeark.com/concepts-and-terminology
+- id: kubernetes
+  conforms: true
+  evidence: >-
+    Core product surface is Kubernetes cluster, template and deployment management;
+    kubeconfig and kubectl are first-class node inputs.
+  source: https://docs.kubeark.com/concepts-and-terminology
+- id: openapi
+  conforms: false
+  evidence: No OpenAPI or Swagger description is published for any Kubeark surface.
+- id: asyncapi
+  conforms: false
+  evidence: No AsyncAPI document is published; webhooks are inbound workflow triggers
+    documented in prose only.
+- id: rfc9457-problem-details
+  conforms: unknown
+  evidence: No error reference or error envelope is published, and there is no spec to
+    inspect.
+- id: rfc8594-sunset-header
+  conforms: false
+  evidence: >-
+    Deprecation is communicated through a published product lifecycle support table, not
+    through Sunset/Deprecation HTTP headers.
+  source: https://docs.kubeark.com/product-lifecycle

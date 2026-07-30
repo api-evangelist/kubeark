@@ -1,0 +1,60 @@
+generated: '2026-07-19'
+method: searched
+source: https://docs.kubeark.com/release-notes
+docs: https://docs.kubeark.com/release-notes
+scheme: major-version releases published as dated Release Notes pages
+current_version: '6.0'
+current_version_released: '2024-04-20'
+note: >-
+  Kubeark publishes Release Notes per platform release rather than a per-endpoint API
+  changelog. Entries below are captured verbatim-in-substance from the Release Notes
+  section of the docs; no API-level change log is published because the platform ships
+  no public API. Most recent published release note is October 2024.
+entries:
+- version: null
+  date: '2024-10'
+  title: October 2024
+  url: https://docs.kubeark.com/release-notes
+  breaking: false
+  highlights:
+  - New API Gateway written in Go, replacing the previous Python-based backend service
+    as the entry point to the platform; improves scalability, concurrency and response
+    times.
+  - Kubernetes-based filtering and sorting for Forms and Template Groups.
+  - OAuth integration across mainstream identity providers (GitHub, Salesforce, Google,
+    Microsoft) in Workflows.
+  - Workflow execution run modes - Parallel, Terminate, Queue.
+  - Customizable workflow timeout (default 24 hours).
+  - Local and global variables in workflows.
+  - Triggers - live event capture without attaching a workflow.
+  - Workflow metrics (Preview).
+  - 'Webhooks: wait for workflow execution and return output via the webhook.'
+  - 'Webhooks: custom URL for webhooks (Preview).'
+  - Custom actions grouping by category, author and type.
+  - Prepaid workspace option limiting total execution time per workspace.
+- version: '6.0'
+  date: '2024-04'
+  title: April 2024
+  url: https://docs.kubeark.com/release-notes
+  breaking: false
+  highlights:
+  - Kubey AI Large Action Model (LAM) - generate workflows from a natural-language
+    description of the desired automation.
+  - Bug fixes and performance enhancements.
+- version: '5.0'
+  date: '2023-12'
+  title: December 2023
+  url: https://docs.kubeark.com/release-notes
+  breaking: false
+- version: '4.0'
+  date: '2023-08'
+  title: August 2023
+  url: https://docs.kubeark.com/release-notes
+  breaking: false
+- version: '3.0'
+  date: '2023-04'
+  title: April 2023
+  url: https://docs.kubeark.com/release-notes
+  breaking: false
+  highlights:
+  - Enhanced IDP capabilities with support for OAuth2, SAML, LDAP and SCIM.

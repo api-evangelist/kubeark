@@ -1,0 +1,211 @@
+generated: '2026-07-19'
+method: searched
+source: https://docs.kubeark.com/concepts-and-terminology
+note: >-
+  DERIVED-FROM-SPEC WAS NOT POSSIBLE: Kubeark publishes no OpenAPI, so there are no $ref
+  links or id-reference fields to walk. This entity graph is instead read from the
+  documented Concepts and Terminology, Core Concepts and menu structure. Relationships are
+  asserted only where the docs state the containment or reference explicitly; no field
+  names, id prefixes or primary keys are invented, and no `via` field is claimed because
+  Kubeark publishes no object reference.
+perspectives:
+- id: kubernetes
+  description: Define and manage clusters, templates and deployments for containerized
+    applications.
+- id: infrastructure
+  description: Terraform-centric definition and provisioning of infrastructure resources.
+entities:
+- name: Workspace
+  docs: https://docs.kubeark.com/workspace
+  description: >-
+    Primary organizational container grouping related automation components, used to scope
+    resources and permissions by project or team.
+  relationships:
+  - type: has_many
+    target: Workflow
+  - type: has_many
+    target: Form
+  - type: has_many
+    target: Trigger
+  - type: has_many
+    target: CronJob
+  - type: has_many
+    target: Source
+  - type: has_one
+    target: LocalVault
+- name: Workflow
+  docs: https://docs.kubeark.com/workflows
+  description: >-
+    Canvas within a Workspace where a series of automated tasks and processes is designed
+    and executed; orchestrates deployment and infrastructure operations.
+  relationships:
+  - type: belongs_to
+    target: Workspace
+  - type: has_many
+    target: Node
+  - type: has_many
+    target: Trigger
+  - type: has_many
+    target: Webhook
+  - type: has_many
+    target: Execution
+  - type: has_many
+    target: ScheduledExecution
+- name: Node
+  docs: https://docs.kubeark.com/about-nodes
+  description: >-
+    Unit of work inside a Workflow. Carries a Name, a Condition, an On Error behavior, a
+    Vault reference and typed Inputs. Nodes include Actions, Stages, Functions and Flows.
+  relationships:
+  - type: belongs_to
+    target: Workflow
+  - type: has_one
+    target: Vault
+- name: Action
+  docs: https://docs.kubeark.com/actions
+  description: >-
+    Predefined operation for Kubernetes and infrastructure management, usable as a
+    workflow component. Includes Default Actions and user-authored Custom Actions, which
+    can be grouped by category, author and type.
+  relationships:
+  - type: belongs_to
+    target: Node
+- name: Stage
+  docs: https://docs.kubeark.com/stages
+  description: >-
+    Interaction step in an identity or form flow. Documented stages include Identification,
+    Password, Email, Prompt, Captcha, Invitation, Deny and User Delete/Login/Logout.
+- name: Trigger
+  docs: https://docs.kubeark.com/workflow-triggers
+  description: Binds an event to a Workflow; supports expression-based conditions and
+    live event capture.
+  relationships:
+  - type: belongs_to
+    target: Workflow
+- name: Webhook
+  docs: https://docs.kubeark.com/web-hooks
+  description: HTTP entry point that invokes a Workflow and can optionally wait for the
+    execution and return its output.
+  relationships:
+  - type: belongs_to
+    target: Workflow
+- name: Execution
+  docs: https://docs.kubeark.com/execution-history
+  description: >-
+    A single run of a Workflow, recorded in execution history with run mode, status and
+    output; child executions are linkable from the parent.
+  relationships:
+  - type: belongs_to
+    target: Workflow
+- name: ScheduledExecution
+  docs: https://docs.kubeark.com/scheduled-executions
+  description: A Workflow execution registered to run automatically at a predefined date
+    and time.
+  relationships:
+  - type: belongs_to
+    target: Workflow
+- name: CronJob
+  docs: https://docs.kubeark.com/cron-jobs
+  description: Scheduled recurring job managed as a workspace resource and audited as a
+    distinct model in the logs.
+  relationships:
+  - type: belongs_to
+    target: Workspace
+- name: Template
+  docs: https://docs.kubeark.com/concepts-and-terminology
+  description: >-
+    Reusable predefined configuration or script used as a blueprint for deployment.
+    Comes in two flavors - Kubernetes templates and Terraform-centric Infrastructure
+    templates. Templates are one of the two licensing pillars.
+  variants:
+  - Templates (Kubernetes)
+  - Templates (Infrastructure)
+  relationships:
+  - type: has_many
+    target: TemplateVersion
+  - type: belongs_to
+    target: TemplateGroup
+  - type: has_many
+    target: Deployment
+- name: TemplateVersion
+  docs: https://docs.kubeark.com/template-versioning
+  description: Versioned revision of a Template, supporting update and rollback.
+  relationships:
+  - type: belongs_to
+    target: Template
+- name: TemplateGroup
+  docs: https://docs.kubeark.com/template-groups
+  description: Grouping of Templates, filterable and sortable within the platform.
+  relationships:
+  - type: has_many
+    target: Template
+- name: Cluster
+  docs: https://docs.kubeark.com/clusters
+  description: >-
+    A Kubernetes cluster registered with Kubeark, carrying name, description, owner,
+    active flag, Prometheus URL, usage URL and kubeconfig. Clusters are the second
+    licensing pillar and the primary unit of organization.
+  relationships:
+  - type: has_many
+    target: Deployment
+- name: Deployment
+  docs: https://docs.kubeark.com/deployments-kubernetes
+  description: >-
+    An instantiation of a Template onto a Cluster or infrastructure target; supports
+    update, rollback, delete and bulk update.
+  variants:
+  - Deployments (Kubernetes)
+  - Deployments (Infrastructure)
+  relationships:
+  - type: belongs_to
+    target: Template
+  - type: belongs_to
+    target: Cluster
+- name: Application
+  docs: https://docs.kubeark.com/applications
+  description: Application entity managed and launched through the platform.
+- name: Artifact
+  docs: https://docs.kubeark.com/artifacts
+  description: Build or deployment artifact tracked by the platform.
+- name: Form
+  docs: https://docs.kubeark.com/forms
+  description: >-
+    Interactive component used within Workspaces and Workflows to capture user input and
+    configuration that influences workflow behavior.
+  relationships:
+  - type: belongs_to
+    target: Workspace
+- name: Source
+  docs: https://docs.kubeark.com/core-concepts
+  description: >-
+    A location from which users can be added to Kubeark, such as an LDAP connection or an
+    OAuth2 connection.
+  relationships:
+  - type: belongs_to
+    target: Workspace
+- name: User
+  docs: https://docs.kubeark.com/users
+  description: Platform identity managed by Kubeark Identity, subject to roles and
+    permissions.
+  relationships:
+  - type: has_many
+    target: Role
+- name: Role
+  docs: https://docs.kubeark.com/roles-and-permissions
+  description: Named set of permissions governing what a User may access and perform.
+- name: Policy
+  docs: https://docs.kubeark.com/policies
+  description: Rule evaluated to allow or deny an action within identity and access flows.
+- name: Vault
+  docs: https://docs.kubeark.com/local-vault
+  description: >-
+    Secure store for secrets such as passwords and API tokens, referenced by workflow
+    nodes. Exists as Local Vault (workspace scope) and Global Vault (platform scope).
+  variants:
+  - Local Vault
+  - Global Vault
+- name: Job
+  docs: https://docs.kubeark.com/jobs
+  description: Long-running unit of work tracked by the platform and surfaced in
+    analytics.
+render: null

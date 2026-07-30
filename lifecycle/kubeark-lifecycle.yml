@@ -1,0 +1,61 @@
+generated: '2026-07-19'
+method: searched
+source: https://docs.kubeark.com/product-lifecycle
+versioning:
+  scheme: major product version (3.0, 4.0, 5.0, 6.0)
+  current: '6.0'
+  docs: https://docs.kubeark.com/release-notes
+  note: >-
+    Versioning applies to the self-hosted Kubeark Platform product, not to a public
+    web API. There is no public API version path or version header to record.
+deprecation:
+  policy_url: https://docs.kubeark.com/product-lifecycle
+  sunset_header: false
+  model: >-
+    Published product lifecycle table with a per-version support model: FS (Full Support)
+    and LS (Limited Support, security fixes only), each with a release date, an End of
+    Full Support date and an End of Limited Support date.
+  support_models:
+  - id: FS
+    name: Full Support
+  - id: LS
+    name: Limited Support
+    scope: security fixes only
+support_matrix:
+- product: Kubeark Platform
+  version: '3.0'
+  support_model: FS
+  released: '2023-04-28'
+  end_of_full_support: '2025-04-27'
+  end_of_limited_support: null
+- product: Kubeark Platform
+  version: '4.0'
+  support_model: FS
+  released: '2023-08-01'
+  end_of_full_support: '2025-07-31'
+  end_of_limited_support: null
+- product: Kubeark Platform
+  version: '5.0'
+  support_model: FS
+  released: '2023-12-20'
+  end_of_full_support: '2025-11-20'
+  end_of_limited_support: null
+- product: Kubeark Platform
+  version: '6.0'
+  support_model: FS
+  released: '2024-04-20'
+  end_of_full_support: '2025-03-20'
+  end_of_limited_support: null
+support:
+  policy_url: https://kubeark.com/support-policy/
+  docs: https://docs.kubeark.com/support-terms
+  note: Support terms page in docs points to the public Support Policy for service
+    levels, response times and escalation procedures.
+sla:
+  url: https://kubeark.com/support-policy/
+  uptime_target: null
+status_page: null
+status_page_note: >-
+  No status page found. status.kubeark.com does not resolve, and no status/uptime page
+  is linked from the site or docs.
+deprecated_operations: []

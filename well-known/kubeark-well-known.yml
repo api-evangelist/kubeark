@@ -1,0 +1,43 @@
+generated: '2026-07-19'
+method: probed
+source: live probes of https://kubeark.com and https://docs.kubeark.com
+host: https://kubeark.com
+present: false
+note: >-
+  kubeark.com serves a WordPress catch-all that returns HTTP 200 with the marketing
+  homepage for EVERY unknown path (a soft 404). Each /.well-known/ probe below returned
+  200, but the body was byte-for-byte the same ~227KB marketing page returned for a
+  known-bogus control path, so NONE of these documents actually exist. Recorded here so
+  future rounds do not re-read those 200s as real discovery documents. docs.kubeark.com
+  returns a genuine 404 for unknown paths and has no /.well-known/ surface either.
+control_probe:
+  path: /bogus-xyz123
+  status: 200
+  bytes: 227898
+  note: known-nonexistent control path; identical body to all probes below
+documents:
+- path: /.well-known/security.txt
+  status: 200
+  present: false
+  soft_404: true
+- path: /.well-known/openid-configuration
+  status: 200
+  present: false
+  soft_404: true
+- path: /.well-known/oauth-authorization-server
+  status: 200
+  present: false
+  soft_404: true
+- path: /.well-known/api-catalog
+  status: 200
+  present: false
+  soft_404: true
+- path: /.well-known/ai-plugin.json
+  status: 200
+  present: false
+  soft_404: true
+- host: https://docs.kubeark.com
+  path: /.well-known/security.txt
+  status: 404
+  present: false
+  soft_404: false

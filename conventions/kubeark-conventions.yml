@@ -1,0 +1,84 @@
+generated: '2026-07-19'
+method: searched
+source: https://docs.kubeark.com/
+note: >-
+  Kubeark ships no public HTTP API and no OpenAPI, so the usual request/response
+  conventions (pagination params, error envelope, rate-limit headers, request-id header)
+  are NOT published and are recorded as unknown rather than guessed. What IS documented is
+  the execution semantics of the workflow engine, captured below. NO Idempotency pointer
+  is emitted: Kubeark documents no idempotency key, and its run modes are concurrency
+  controls, not idempotent-replay semantics.
+authentication:
+  style: vault-backed API tokens and kubeconfig for workflow nodes; SSO/OIDC/SAML2/LDAP
+    for platform access
+  artifact: authentication/kubeark-authentication.yml
+idempotency:
+  supported: false
+  header: null
+  note: >-
+    No idempotency key, no request-replay contract and no deduplication window is
+    documented anywhere in the Kubeark docs.
+concurrency:
+  documented: true
+  mechanism: workflow run modes
+  since: '2024-10'
+  modes:
+  - id: parallel
+    description: Executions run in parallel (the original behavior).
+  - id: terminate
+    description: Each new execution cancels any previously running executions.
+  - id: queue
+    description: New executions wait in a queue until previous ones finish.
+  configured_in: workflow Settings modal
+timeouts:
+  documented: true
+  default: 24 hours
+  configurable: true
+  note: Users can set a custom timeout per workflow; the default is 24 hours.
+pagination:
+  documented: false
+  note: >-
+    Pagination exists in the UI (execution history gained pagination in the October 2024
+    release) but no API pagination parameters or response fields are published.
+error_handling:
+  envelope: unknown
+  node_level: true
+  mechanism: >-
+    Each workflow node carries an On Error setting controlling behavior when the node
+    fails; a Condition field allows conditional execution. No API error envelope or error
+    code registry is published.
+  artifact: null
+versioning:
+  scheme: major product version of the self-hosted platform
+  api_versioning: none published
+  artifact: lifecycle/kubeark-lifecycle.yml
+rate_limiting:
+  documented: false
+  note: >-
+    No rate-limit headers or quotas are published. The closest documented control is a
+    prepaid workspace option that limits total execution time per workspace.
+observability:
+  audit_logs: true
+  audit_docs: https://docs.kubeark.com/logs-global
+  filters:
+  - username
+  - event (Added / Updated / Deleted)
+  - model (Workspace, Workflow, Trigger, Source, Cron Job)
+  - date range
+  execution_history: https://docs.kubeark.com/execution-history
+  metrics:
+    status: preview
+    since: '2024-10'
+    description: Workflow metrics providing insights into workflow performance and
+      execution data.
+secrets:
+  mechanism: Local Vault (workspace scope) and Global Vault (platform scope)
+  note: Node inputs reference vault entries rather than embedding secrets in the workflow
+    definition.
+variables:
+  local: Created on each script node; values can be set or prompted at the start of the
+    node.
+  global: Predefined variables usable throughout the workflow; cannot be created inside
+    individual nodes.
+event_surface:
+  artifact: asyncapi/kubeark-webhooks.yml
