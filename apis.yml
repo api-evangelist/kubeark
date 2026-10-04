@@ -50,13 +50,12 @@ tags:
 - Company
 - Orchestration
 - Automation
-- Workflow-Automation
+- Workflow Automation
 - Integration
 - Kubernetes
 - Infrastructure as Code
 - Terraform
-- Identity and Access Management
-- Agentic AI
+- AI Agents
 - DevOps
 - Self-Hosted
 tags_raw:
@@ -68,10 +67,10 @@ tags_raw:
 - Kubernetes
 - Infrastructure as Code
 - Terraform
-- Identity and Access Management
 - Agentic AI
 - DevOps
 - Self-Hosted
+- Workflow-Automation
 apis: []
 maintainers:
 - FN: Kin Lane
@@ -137,3 +136,5 @@ x-enrichment:
   status: backfilled
   pass: local-v1
   note: backfilled from .gitignore signal + verified work evidence
+x-tags-removed:
+- Identity and Access Management
