@@ -64,56 +64,94 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Kubeark is an enterprise orchestration and AI automation platform that standardizes system
-integration across hybrid estates — workflow automation, prebuilt integration connectors,
-and agentic automation that can run on-premise for compliance-sensitive environments.
+Kubeark is an enterprise orchestration and AI automation platform that standardizes system integration across hybrid estates. It combines three surfaces: workflow automation, where technical teams and end users build language-agnostic workflows and long-running jobs from a node-based editor; integration, which connects existing systems, SaaS applications, databases and internal APIs through prebuilt connectors and actions; and agentic automation, which deploys autonomous AI agents that can run on-premise for compliance-sensitive environments. The platform operates on two perspectives, a Kubernetes perspective covering clusters, templates and deployments, and a Terraform-centric infrastructure perspective for provisioning. Kubeark bundles its own identity provider, Kubeark Identity, supporting SAML2, LDAP, OAuth2, OIDC and SCIM, plus local and global vaults for secrets. It ships as self-hosted, cloud, hybrid or on-premises software licensed by number of templates and clusters, and publishes no public API, OpenAPI description or SDKs.
 
-- Website — https://kubeark.com/
-- Documentation — https://docs.kubeark.com/
-- Release Notes — https://docs.kubeark.com/release-notes
-- Product Lifecycle — https://docs.kubeark.com/product-lifecycle
-- GitHub — https://github.com/Kubeark
+**Areas:** Company · Orchestration · Automation · Workflow Automation · Integration · Kubernetes · Infrastructure as Code · Terraform · AI Agents · DevOps · Self-Hosted
 
-Backed by: seedcamp
+## Kubeark on APIs.io
 
-## API surface
+Everything profiled for Kubeark is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/kubeark/](https://apis.io/providers/kubeark/)** — or go straight to one of the APIs or properties below.
 
-Kubeark is **self-hosted software, not a public API provider**. It publishes no public API
-host, no OpenAPI/Swagger description, no SDKs, no CLI and no MCP server. Customer instances
-run at customer-controlled hostnames (the docs use `yourdomain.kubeark.com` as the
-placeholder). The October 2024 release introduced a Go-based internal API Gateway as the
-platform entry point, but it is not publicly documented.
+### Published properties
 
-Because of that, the spec-grounded artifacts in this pipeline — `openapi/`, `overlays/`,
-`errors/`, `scopes/`, `skills/`, `mcp/`, `grpc/`, `sandbox/`, `cli/`, `components/`,
-`packages/` — are intentionally **absent rather than fabricated**.
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## Artifacts
+#### AsyncAPI (1)
 
-| Artifact | Method | Notes |
-|---|---|---|
-| `llms/kubeark-llms.txt` | searched | Verbatim from `https://docs.kubeark.com/llms.txt` (354 KB) |
-| `changelog/` | searched | 5 dated Release Notes entries, current version 6.0 |
-| `lifecycle/` | searched | Published per-version support table (FS/LS) with end-of-support dates |
-| `authentication/` | searched | Kubeark Identity (SAML2/LDAP/OAuth2/OIDC/SCIM) + vault-backed node tokens |
-| `conformance/` | searched | Identity/IaC standards; no certifications published |
-| `conventions/` | searched | Run modes, timeouts, vaults, variables, audit logging |
-| `asyncapi/kubeark-webhooks.yml` | searched | Inbound webhook + trigger catalog; **no AsyncAPI published** |
-| `data-model/` | searched | Entity graph read from Concepts & Terminology (no spec to derive from) |
-| `security/kubeark-domain-security.yml` | probed | TLS 1.3, no HSTS, no DNSSEC, no CAA, SPF + DMARC (quarantine) |
-| `well-known/` | probed | **Nothing present** — see soft-404 note below |
+Event-driven and webhook contracts.
 
-## Probe caveat — kubeark.com soft-404s
+- [Kubeark Webhooks](https://apis.io/asyncapis/kubeark/kubeark-webhooks/)
 
-`kubeark.com` runs WordPress with a catch-all that returns **HTTP 200 and the full
-marketing homepage for every unknown path**. A control probe of `/bogus-xyz123` returned
-the same ~227 KB body as `/.well-known/security.txt`, `/llms.txt`, `/pricing/` and
-`/privacy/`. Those 200s are **not** real documents. Any future automated probe of this
-domain must compare against a control path before recording a hit — the security-program
-probe produced a false-positive vulnerability-disclosure hit here that was verified and
-discarded. `docs.kubeark.com` returns genuine 404s and can be probed normally.
+#### Security (2)
 
-Real pages verified by distinct body/title: `/terms/`, `/support-policy/`, `/blog/`,
-`/contact-us/`, `/success-stories/`. No pricing page, no signup/login, no status page
-(`status.kubeark.com` does not resolve), and no separate privacy page — the privacy
-statement is a PDF.
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Kubeark Authentication](https://apis.io/security/kubeark/kubeark-authentication/)
+- [Kubeark Domain Security](https://apis.io/security/kubeark/kubeark-domain-security/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://kubeark.com/)
+- [Documentation](https://docs.kubeark.com/)
+- [Getting started](https://docs.kubeark.com/getting-started)
+- [Support](https://kubeark.com/contact-us/)
+- [Changelog](https://docs.kubeark.com/release-notes)
+- [Blog](https://kubeark.com/blog/)
+- [Terms of service](https://kubeark.com/terms/)
+- [Privacy policy](https://kubeark.com/wp-content/uploads/2025/01/2023.02.10.kubeark-privacy-statement.pdf)
+- [GitHub](https://github.com/Kubeark)
+
+## API Evangelist rating
+
+**Kin Score 32.8** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 55.4 |
+| Contract quality | 44.2 |
+| Contract governance | 18.2 |
+| Operational transparency | 34.2 |
+| Developer ergonomics | 33.3 |
+| Access clarity | 10.5 |
+
+**Agent readiness 19.8** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | — |
+| Event Surface Described | yes |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 20.6** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/kubeark/](https://apis.io/providers/kubeark/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Kubeark: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/kubeark/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
